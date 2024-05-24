@@ -16,7 +16,7 @@ class AdminController extends Controller
         return view('auth/register');
     }
 
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
         $user = $request->only(['name', 'email', 'password']);
 
@@ -33,8 +33,8 @@ class AdminController extends Controller
     public function admin()
     {
         $categories = Category::all();
-        $contacts = Contact::Paginate(7);
-        return view('auth/admin', compact('contacts', 'categories'));
+        $contacts = Contact::paginate(7);
+        return view('auth.admin', compact('contacts', 'categories'));
     }
 
     public function search(Request $request)
