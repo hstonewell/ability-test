@@ -12,7 +12,7 @@
 
     <div class="contact__container">
         <table class="contact-form__table">
-            <form class="contact-form" name="contact" method="post" action="{{ route('confirm') }}">
+            <form class="contact-form" name="contact" method="post" action="{{ route('confirm') }}" novalidate>
                 @csrf
                 <tr class="contact-form__item">
                     <th class="contact-form__label" rowspan="2">
