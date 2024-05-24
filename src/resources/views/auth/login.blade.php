@@ -20,7 +20,7 @@
 
     <div class="register__container">
         <div class="register__container__inner">
-            <form class="login-form" action="/login" method="post">
+            <form class="login-form" action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="register-form__group">
                     <div class="register-form__label">
