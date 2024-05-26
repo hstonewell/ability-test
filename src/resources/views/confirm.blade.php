@@ -16,10 +16,9 @@
             <table class="contact-form__table">
                 <tr class="contact-form__table-row">
                     <th class="contact-form__table--header">お名前</th>
-                    <td class="contact-form__table--content">
-                        <input type="text" name="last_name" class="form-item-input" value="{{ $contact['last_name'] }}" readonly />
-                        <input type="text" name="first_name" class="form-item-input" value="{{ $contact['first_name'] }}" readonly />
-                    </td>
+                    <td class="contact-form__table--content">{{ $contacts['first_name'] }}&nbsp;{{ $contacts['last_name'] }}</td>
+                        <input type="hidden" name="last_name" class="form-item-input" value="{{ $contact['last_name'] }}" />
+                        <input type="hidden" name="first_name" class="form-item-input" value="{{ $contact['first_name'] }}" />
                 </tr>
 
                 <tr class="contact-form__table-row">
@@ -85,7 +84,7 @@
 
             <div class="contact-form__button">
                 <button type="submit" class="submit__button-submit" value="送信">送信</button>
-                <button type="submit" class="submit__button-back"   name="back" value="back">修正</button>
+                <button type="submit" class="submit__button-back" name="back" value="back">修正</button>
             </div>
         </form>
 
