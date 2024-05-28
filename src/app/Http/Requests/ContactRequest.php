@@ -24,9 +24,7 @@ class ContactRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'tel' => $this->input('tel_1') . '-' . $this->input('tel_2') . '-' . $this->input('tel_3'),
-        ]);
+        //
     }
 
     public function rules()
@@ -36,7 +34,9 @@ class ContactRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'gender' => 'required',
             'email' => 'required|string|email|max:255',
-            'tel' => 'required|string|regex:/^\d{3}-\d{4}-\d{4}$/',
+            'tel_1' => 'required|max:5|regex:/^[0-9]+$/',
+            'tel_2' => 'required|max:5|regex:/^[0-9]+$/',
+            'tel_3' => 'required|max:5|regex:/^[0-9]+$/',
             'address' => 'required|string|max:255',
             'building' => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
@@ -52,8 +52,15 @@ class ContactRequest extends FormRequest
             'gender.required' => '性別を選択してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスはメール形式で入力してください',
-            'tel.required' => '電話番号を入力してください',
-            'tel.regex' => '電話番号は5桁までの数字で入力してください',
+            'tel_1.required' => '電話番号を入力してください',
+            'tel_1.max' => '電話番号は5桁までの数字で入力してください',
+            'tel_1.regex' => '電話番号は半角数字で入力してください',
+            'tel_2.required' => '電話番号を入力してください',
+            'tel_2.max' => '電話番号は5桁までの数字で入力してください',
+            'tel_2.regex' => '電話番号は半角数字で入力してください',
+            'tel_3.required' => '電話番号を入力してください',
+            'tel_3.max' => '電話番号は5桁までの数字で入力してください',
+            'tel_3.regex' => '電話番号は半角数字で入力してください',
             'address.required' => '住所を入力してください',
             'building.max' => '255字以内で入力してください',
             'category_id.required' => 'お問い合わせの種類を選択してください',
