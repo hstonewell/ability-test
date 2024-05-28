@@ -41,11 +41,11 @@
                         性別<span class="form-item-label-required">※</span>
                     </th>
                     <td class="contact-form__radio">
-                        <input type="radio" id="contactChoice1" name="gender" value="1" checked />
+                        <input type="radio" id="male" name="gender" value="1" {{ old('gender')==1 || old('gender')==null ? 'checked' : '' }}>
                         <label for="contactChoice1">男性</label>
-                        <input type="radio" id="contactChoice1" name="gender" value="2" />
+                        <input type="radio" id="female" name="gender" value="2" {{ old('gender')==2 ? 'checked' : '' }}>
                         <label for="contactChoice1">女性</label>
-                        <input type="radio" id="contactChoice1" name="gender" value="3" />
+                        <input type="radio" id="other" name="gender" value="3" {{ old('gender')==3 ? 'checked' : '' }}>
                         <label for="contactChoice1">その他</label>
                     </td>
                 </tr>
