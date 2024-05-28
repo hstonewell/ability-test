@@ -16,9 +16,9 @@
             <table class="contact-form__table">
                 <tr class="contact-form__table-row">
                     <th class="contact-form__table--header">お名前</th>
-                    <td class="contact-form__table--content">{{ $contacts['first_name'] }}&nbsp;{{ $contacts['last_name'] }}</td>
-                        <input type="hidden" name="last_name" class="form-item-input" value="{{ $contact['last_name'] }}" />
-                        <input type="hidden" name="first_name" class="form-item-input" value="{{ $contact['first_name'] }}" />
+                    <td class="contact-form__table--content"><p>{{ $contact['last_name'] }}&nbsp;{{ $contact['first_name'] }}</p></td>
+                    <input type="hidden" name="last_name" class="form-item-input" value="{{ $contact['last_name'] }}" />
+                    <input type="hidden" name="first_name" class="form-item-input" value="{{ $contact['first_name'] }}" />
                 </tr>
 
                 <tr class="contact-form__table-row">
@@ -47,8 +47,11 @@
                 <tr class="contact-form__table-row">
                     <th class="contact-form__table--header">電話番号</th>
                     <td class="contact-form__table--content">
-                        <input type="text" name="tel" class="form-item-input" value="{{ $contact['tel'] }}" readonly />
+                        <p>{{ $contact['tel_1'] }}{{ $contact['tel_2'] }}{{ $contact['tel_3'] }}</p>
                     </td>
+                        <input type="hidden" name="tel_1" class="form-item-input" value="{{ $contact['tel_1'] }}" readonly />
+                        <input type="hidden" name="tel_2" class="form-item-input" value="{{ $contact['tel_2'] }}" readonly />
+                        <input type="hidden" name="tel_3" class="form-item-input" value="{{ $contact['tel_3'] }}" readonly />
                 </tr>
 
                 <tr class="contact-form__table-row">
