@@ -31,8 +31,7 @@ class ContactController extends Controller
                 ->withInput();
         }
 
-        //$tel = $request->input('tel_1') . '-' . $request->input('tel_2') . '-' . $request->input('tel_3');
-        //$contact['tel'] = $tel;
+        $request['tel'] = $request->tel_1 . $request->tel_2 . $request->tel_3;
 
 
         $contact = $request->only(['first_name', 'last_name', 'gender', 'email', 'tel', 'address', 'building', 'category_id', 'detail']);
