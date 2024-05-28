@@ -32,11 +32,8 @@
     text-align: left;
 }
 
-.contact-form__table--content {
+.contact-form__table--content input,p {
     padding-left: 30px;
-}
-
-.contact-form__table--content input, p {
     color: #BEB1A6;
     font-size: 20px;
     border-style: none;
