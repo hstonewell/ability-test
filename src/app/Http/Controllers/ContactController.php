@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
+use Carbon\Carbon;
 
 class ContactController extends Controller
 {
@@ -45,4 +46,41 @@ class ContactController extends Controller
     {
         return view('thanks');
     }
+
+    public function admin()
+    {
+        $contacts = Contact::with('category')->paginate(7);
+        $categories = Category::all();
+        $csvData = Contact::all();
+        return view('admin', compact('contacts', 'categories', 'csvData'));
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->has('reset')) {
+            $contacts = Contact::with('category')->paginate(7);
+        } else {
+            $date = $request->input('date');
+            $date = $date ? Carbon::parse($date)->toDateString() : null;
+
+            $contacts = Contact::with('category')
+            ->CategorySearch($request->input('category_id'))
+            ->GenderSearch($request->input('gender'))
+            ->byDate($date)
+                ->KeywordSearch($request->input('keyword'))
+                ->paginate(7)
+                ->appends($request->all());
+        }
+        $categories = Category::all();
+
+        return view('/auth/admin', compact('contacts', 'categories'));
+    }
+
+
+    public function destroy(Request $request)
+    {
+        Contact::find($request->id)->delete();
+        return redirect('/admin');
+    }
+
 }
