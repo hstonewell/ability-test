@@ -73,8 +73,7 @@ return [
     | and the user is authenticated. You are free to change this value.
     |
     */
-    
-    'home' => '/admin',
+    'home' => RouteServiceProvider::HOME,
 
     /*
     |--------------------------------------------------------------------------
@@ -131,7 +130,7 @@ return [
     |
     */
 
-    'views' => false,
+    'views' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -146,15 +145,15 @@ return [
 
     'features' => [
         Features::registration(),
-        // Features::resetPasswords(),
+        Features::resetPasswords(),
         // Features::emailVerification(),
         // Features::updateProfileInformation(),
         // Features::updatePasswords(),
-        // Features::twoFactorAuthentication([
-        //     'confirm' => true,
-        //     'confirmPassword' => true,
+        Features::twoFactorAuthentication([
+            'confirm' => true,
+            'confirmPassword' => true,
             // 'window' => 0,
-        // ]),
+        ]),
     ],
 
 ];
