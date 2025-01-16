@@ -6,7 +6,7 @@
 
 @section('header-button')
 <div class="header__button">
-    <form class="register__button" method="get" action="/register">
+    <form class="register__button" action="/register">
         <button class="header__button--submit" type="submit">Register</button>
     </form>
 </div>
@@ -20,7 +20,7 @@
 
     <div class="register__container">
         <div class="register__container__inner">
-            <form class="login-form" action="{{ route('login') }}" method="post">
+            <form class="login-form" action="/login" method="post">
                 @csrf
                 <div class="register-form__group">
                     <div class="register-form__label">
