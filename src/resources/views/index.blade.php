@@ -87,7 +87,7 @@
                     </td>
                 </tr>
                 <tr class="contact-form__item">
-                    @error('tel')
+                    @error('tel_all')
                     <td class="error">
                         <li>{{ $message }}</li>
                     </td>

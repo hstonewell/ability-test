@@ -27,6 +27,29 @@ class ContactRequest extends FormRequest
         //
     }
 
+    public function attributes() {
+        return [
+            'tel_all' => '電話番号',
+        ];
+    }
+
+    public function validationData() {
+        $this->addTelAll();
+        return parent::validationData();
+    }
+
+    private function addTelAll()
+    {
+        $tel1 = $this->request->get('tel_1');
+        $tel2 = $this->request->get('tel_2');
+        $tel3 = $this->request->get('tel_3');
+
+        $telAll = $tel1 . $tel2 . $tel3;
+        $this->merge([
+            'tel_all' => $telAll
+        ]);
+    }
+
     public function rules()
     {
         return [
@@ -34,9 +57,10 @@ class ContactRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'gender' => 'required',
             'email' => 'required|string|email|max:255',
-            'tel_1' => 'required|max:5|regex:/^[0-9]+$/',
-            'tel_2' => 'required|max:5|regex:/^[0-9]+$/',
-            'tel_3' => 'required|max:5|regex:/^[0-9]+$/',
+            // 'tel_1' => 'required|max:5|regex:/^[0-9]+$/',
+            // 'tel_2' => 'required|max:5|regex:/^[0-9]+$/',
+            // 'tel_3' => 'required|max:5|regex:/^[0-9]+$/',
+            'tel_all' => 'required|numeric|digits_between:8,11',
             'address' => 'required|string|max:255',
             'building' => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
@@ -52,15 +76,18 @@ class ContactRequest extends FormRequest
             'gender.required' => '性別を選択してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスはメール形式で入力してください',
-            'tel_1.required' => '電話番号を入力してください',
-            'tel_1.max' => '電話番号は5桁までの数字で入力してください',
-            'tel_1.regex' => '電話番号は半角数字で入力してください',
-            'tel_2.required' => '電話番号を入力してください',
-            'tel_2.max' => '電話番号は5桁までの数字で入力してください',
-            'tel_2.regex' => '電話番号は半角数字で入力してください',
-            'tel_3.required' => '電話番号を入力してください',
-            'tel_3.max' => '電話番号は5桁までの数字で入力してください',
-            'tel_3.regex' => '電話番号は半角数字で入力してください',
+            'tel_all.required' => '電話番号を入力してください',
+            'tel_all.digits_between' => '電話番号は8桁から11桁までの数字で入力してください',
+            'tel_all.numeric' => '電話番号は半角数字で入力してください',
+            // 'tel_1.required' => '電話番号を入力してください',
+            // 'tel_1.max' => '電話番号は5桁までの数字で入力してください',
+            // 'tel_1.regex' => '電話番号は半角数字で入力してください',
+            // 'tel_2.required' => '電話番号を入力してください',
+            // 'tel_2.max' => '電話番号は5桁までの数字で入力してください',
+            // 'tel_2.regex' => '電話番号は半角数字で入力してください',
+            // 'tel_3.required' => '電話番号を入力してください',
+            // 'tel_3.max' => '電話番号は5桁までの数字で入力してください',
+            // 'tel_3.regex' => '電話番号は半角数字で入力してください',
             'address.required' => '住所を入力してください',
             'building.max' => '255字以内で入力してください',
             'category_id.required' => 'お問い合わせの種類を選択してください',
