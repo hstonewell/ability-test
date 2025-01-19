@@ -23,27 +23,27 @@
             <div class="search-form__group">
                 <form class="search-form" action="{{ route('search') }}" method="get">
                     @csrf
-                    <input class="search-form__item--input" type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ old('keyword') }}">
+                    <input class="search-form__item--input" type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword', old('keyword')) }}">
                     <div class="search-form__item--select">
                         <select class="search-form__item--gender" name="gender">
-                            <option value="{{ old('gender') }}" selected>性別</option>
-                            <option value="1">男性</option>
-                            <option value="2">女性</option>
-                            <option value="3">その他</option>
+                            <option value="{{ is_null(request('gender', old('gender'))) ? 'selected' : '' }}">性別</option>
+                            <option value="1" {{ request('gender', old('gender')) == '1' ? 'selected' : '' }}>男性</option>
+                            <option value="2" {{ request('gender', old('gender')) == '2' ? 'selected' : '' }}>女性</option>
+                            <option value="3" {{ request('gender', old('gender')) == '3' ? 'selected' : '' }}>その他</option>
                         </select>
                     </div>
                     <div class="search-form__item--select">
                         <select class="search-form__item--categories" name="category_id">
-                            <option value="" selected disabled>お問い合わせの種類</option>
+                            <option value="" {{ is_null(request('category_id', old('category_id'))) ? 'selected' : '' }}>お問い合わせの種類</option>
                             @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">
+                            <option value="{{ $category->id }}" {{ request('category_id', old('category_id')) == $category->id ? 'selected' : '' }}>
                                 {{ $category->content }}
                             </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="search-form__item--select">
-                        <input class="search-form__item--date" type="date" name="date">
+                        <input class="search-form__item--date" type="date" name="date" value="{{ request('date', old('date')) }}">
                     </div>
                     <button class="search-form__button--submit" type="submit">検索</button>
                     <button class="search-form__button--reset" type="submit" name="reset" value="true">リセット</button>
@@ -158,9 +158,16 @@
                         </td>
                     </tr>
                     @endforeach
-
                 </table>
             </div>
+
+            <div class="export-form">
+                <form action="{{'/export?'.http_build_query(request()->query())}}" method="post">
+                    @csrf
+                    <input class="export__btn btn" type="submit" value="エクスポート">
+                </form>
+            </div>
+
         </div>
     </div>
 </main>
