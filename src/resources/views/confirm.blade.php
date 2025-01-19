@@ -11,7 +11,7 @@
     </div>
 
     <div class="contact__container">
-        <form class="contact-form" name="store" method="POST" action="{{ route('store') }}">
+        <form class="contact-form" name="store" method="POST" action="{{ route('contact.store') }}">
             @csrf
             <table class="contact-form__table">
                 <tr class="contact-form__table-row">

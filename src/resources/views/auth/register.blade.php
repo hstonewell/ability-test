@@ -21,7 +21,7 @@
 
         <div class="register__container">
             <div class="register__container__inner">
-                <form class="register-form" method="post" action="/register">
+                <form class="register-form" method="post" action="{{ route('store') }}">
                     @csrf
                     <div class="register-form__group">
                         <div class="register-form__label">
