@@ -21,7 +21,7 @@
         </div>
         <div class="main__content__inner">
             <div class="search-form__group">
-                <form class="search-form" action="/admin/search" method="get">
+                <form class="search-form" action="{{ route('search') }}" method="get">
                     @csrf
                     <input class="search-form__item--input" type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ old('keyword') }}">
                     <div class="search-form__item--select">
@@ -145,8 +145,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <form class="modal-content__delete-form" action="/admin/delete" method="POST">
-                                        @method('DELETE')
+                                    <form class="modal-content__delete-form" action="{{ route('destroy') }}" method="POST">
                                         @csrf
                                         <div class="modal-content__delete-form__button">
                                             <input type="hidden" name="id" value="{{ $contact['id'] }}">
