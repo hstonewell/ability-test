@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
+use Laravel\Fortify\Fortify;
 
 class AdminRequest extends FormRequest
 {
@@ -26,8 +27,18 @@ class AdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required | email',
-            'password' => 'required'
+            Fortify::username() => 'required|string',
+            'email' => [
+                'required',
+                'string',
+                'email:strict,dns,spoof',
+                'max:191',
+            ],
+            'password' => [
+                'required',
+                'string',
+                'max:191',
+            ],
         ];
     }
 }
