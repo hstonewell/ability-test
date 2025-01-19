@@ -76,7 +76,8 @@ input[type=date]::-webkit-calendar-picker-indicator {
     opacity: 0;
 }
 
-.search-form__button--submit {
+.search-form__button--submit,
+.export__btn {
     background-color: #8B7969;
     color: #fff;
     font-size: 18px;
@@ -96,7 +97,8 @@ input[type=date]::-webkit-calendar-picker-indicator {
     appearance: none;
 }
 
-.main__content__inner--pagination {
+.main__content__inner--pagination,
+.export-form {
     display: flex;
     justify-content: right;
     height: 50px
@@ -131,7 +133,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
     color: #fff;
 }
 
-.page-link {
+.pagination a {
     color: #8B7969;
     text-decoration: none;
 }
@@ -258,4 +260,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
     border: none;
     outline: none;
     cursor: pointer;
+}
+
+.export__btn {
+    padding: 10px 20px;
+    margin: 15px 0px;
 }
